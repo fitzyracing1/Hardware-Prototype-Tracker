@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hardware Prototype Tracker • Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
+        :root { --primary: #0ea5e9; }
+        body { font-family: 'Inter', system_ui, sans-serif; }
+        .font-display { font-family: 'Space Grotesk', 'Inter', sans-serif; }
+        .tech-gradient { background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%); }
+        .card { transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s; }
+        .card:hover { transform: translateY(-4px); box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); }
+        .status-badge { font-size: 0.75rem; padding: 0.25rem 0.75rem; border-radius: 9999px; font-weight: 600; }
+        .progress-bar { height: 6px; background: #e5e7eb; border-radius: 9999px; overflow: hidden; }
+        .section-header { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.025em; }
+        .project-card { border: 1px solid #e5e7eb; }
+        .dark .project-card { border-color: #374151; }
+    </style>
+</head>
+<body class="bg-zinc-950 text-zinc-200">
+    <!-- Header -->
+    <header class="border-b border-zinc-800 bg-zinc-900/80 backdrop-blur-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+            <div class="flex items-center gap-x-4">
+                <div class="w-11 h-11 tech-gradient rounded-2xl flex items-center justify-center shadow-inner">
+                    <i class="fa-solid fa-microchip text-white text-3xl"></i>
+                </div>
+                <div>
+                    <h1 class="font-display text-3xl font-semibold tracking-tighter">Hardware Prototype Tracker</h1>
+                    <p class="text-xs text-zinc-400 -mt-1">Tesla Bot Cruiser • Open Source Spaceship • Nanocraft • Organic Spin Processor</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-x-3">
+                <a href="https://github.com/fitzyracing1/Hardware-Prototype-Tracker" target="_blank" 
+                   class="flex items-center gap-x-2 px-4 py-2 text-sm font-medium bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 rounded-2xl transition-colors">
+                    <i class="fa-brands fa-github"></i>
+                    <span class="hidden sm:inline">View on GitHub</span>
+                </a>
+                <a href="https://github.com/fitzyracing1/Hardware-Prototype-Tracker/issues" target="_blank"
+                   class="px-4 py-2 text-sm font-medium bg-white text-zinc-950 hover:bg-zinc-100 rounded-2xl transition-colors flex items-center gap-x-2">
+                    <i class="fa-solid fa-list-check"></i>
+                    <span>Issues</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-6 pt-8 pb-12">
+        <!-- Hero / Stats -->
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-y-4 mb-8">
+            <div>
+                <div class="inline-flex items-center gap-x-2 px-3 py-1 bg-zinc-900 border border-zinc-800 rounded-2xl text-xs font-mono tracking-[2px] text-emerald-400 mb-3">
+                    <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+                    LIVE • 2026-07-22
+                </div>
+                <h2 class="font-display text-5xl tracking-tighter font-semibold">Prototype Tracking Dashboard</h2>
+                <p class="mt-2 text-xl text-zinc-400">Simple structured data • Voice updates from phone • GitHub Issues + Projects</p>
+            </div>
+            <div class="flex gap-6 text-center">
+                <div>
+                    <div class="text-4xl font-semibold text-white">4</div>
+                    <div class="text-xs text-zinc-500 tracking-widest">ACTIVE PROJECTS</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-semibold text-white">5</div>
+                    <div class="text-xs text-zinc-500 tracking-widest">OPEN ISSUES</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-semibold text-emerald-400">100%</div>
+                    <div class="text-xs text-zinc-500 tracking-widest">TRACKED</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Update Banner -->
+        <div class="mb-8 p-5 bg-zinc-900 border border-zinc-800 rounded-3xl flex flex-col md:flex-row gap-4 items-start md:items-center">
+            <div class="flex-1">
+                <div class="flex items-center gap-x-3">
+                    <i class="fa-solid fa-mobile-screen-button text-2xl text-sky-400"></i>
+                    <div>
+                        <span class="font-semibold">Update from your phone (voice or text)</span>
+                        <span class="text-zinc-400 text-sm block md:inline md:ml-2">Open GitHub app → Issues → Comment on main tracking issue or use template</span>
+                    </div>
+                </div>
+            </div>
+            <a href="https://github.com/fitzyracing1/Hardware-Prototype-Tracker/issues/new?template=hardware-progress-update.md" target="_blank"
+               class="shrink-0 px-5 py-2.5 bg-sky-600 hover:bg-sky-500 text-white text-sm font-semibold rounded-2xl flex items-center gap-x-2 transition-colors">
+                <i class="fa-solid fa-plus"></i>
+                <span>New Structured Update</span>
+            </a>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="mb-4 flex items-center justify-between">
+            <h3 class="section-header">Active Projects</h3>
+            <div class="flex items-center gap-x-2 text-xs">
+                <div onclick="filterProjects('all')" class="cursor-pointer px-3 py-1 rounded-2xl bg-zinc-800 hover:bg-zinc-700 active-filter" id="filter-all">All</div>
+                <div onclick="filterProjects('concept')" class="cursor-pointer px-3 py-1 rounded-2xl hover:bg-zinc-800" id="filter-concept">Concept</div>
+                <div onclick="filterProjects('prototyping')" class="cursor-pointer px-3 py-1 rounded-2xl hover:bg-zinc-800" id="filter-prototyping">Prototyping</div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6" id="projects-grid">
+            <!-- Tesla Bot Cruiser Card -->
+            <div class="project-card prototyping bg-zinc-900 rounded-3xl p-6 flex flex-col" data-status="prototyping">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <div class="flex items-center gap-x-3">
+                            <i class="fa-solid fa-robot text-3xl text-amber-400"></i>
+                            <h4 class="font-semibold text-2xl tracking-tight">Tesla Bot Cruiser</h4>
+                        </div>
+                        <p class="text-xs text-zinc-400 mt-0.5">Robotics / Autonomous Mobile Platform</p>
+                    </div>
+                    <span class="status-badge bg-amber-400/10 text-amber-400 border border-amber-400/30">PROTOTYPING</span>
+                </div>
+
+                <div class="mb-5">
+                    <div class="flex justify-between text-xs mb-1.5">
+                        <span class="font-medium text-zinc-300">Progress</span>
+                        <span class="font-mono text-emerald-400">15%</span>
+                    </div>
+                    <div class="progress-bar"><div class="bg-gradient-to-r from-amber-400 to-yellow-400 h-full rounded" style="width: 15%"></div></div>
+                </div>
+
+                <div class="space-y-3 text-sm flex-1">
+                    <div>
+                        <span class="text-zinc-400 text-xs block">NEXT MILESTONE</span>
+                        <span class="font-medium">Complete high-level architecture and initial chassis prototype</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-x-4 text-xs">
+                        <div><span class="text-zinc-400">BOM</span><br><span class="font-medium">v0.8 • Initial Draft</span></div>
+                        <div><span class="text-zinc-400">LAST UPDATED</span><br><span class="font-medium">2026-07-22</span></div>
+                    </div>
+                    <div><span class="text-zinc-400 text-xs">BLOCKERS</span> <span class="font-medium text-emerald-400">None</span></div>
+                </div>
+
+                <div class="pt-5 mt-auto border-t border-zinc-800 flex gap-2">
+                    <a href="https://github.com/fitzyracing1/Hardware-Prototype-Tracker/issues/2" target="_blank" 
+                       class="flex-1 text-center py-2 text-xs font-semibold bg-zinc-800 hover:bg-zinc-700 rounded-2xl transition-colors">View Issue #2</a>
+                    <a href="https://github.com/fitzyracing1/Hardware-Prototype-Tracker/blob/main/projects/tesla-bot-cruiser.md" target="_blank"
+                       class="flex-1 text-center py-2 text-xs font-semibold border border-zinc-700 hover:bg-zinc-800 rounded-2xl transition-colors">Structured Data</a>
+                </div>
+            </div>
+
+            <!-- Open Source Spaceship Card -->
+            <div class="project-card concept bg-zinc-900 rounded-3xl p-6 flex flex-col" data-status="concept">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <div class="flex items-center gap-x-3">
+                            <i class="fa-solid fa-rocket text-3xl text-sky-400"></i>
+                            <h4 class="font-semibold text-2xl tracking-tight">Open Source Spaceship</h4>
+                        </div>
+                        <p class="text-xs text-zinc-400 mt-0.5">Spacecraft / Exploration Vehicle</p>
+                    </div>
+                    <span class="status-badge bg-sky-400/10 text-sky-400 border border-sky-400/30">CONCEPT</span>
+                </div>
+
+                <div class="mb-5">
+                    <div class="flex justify-between text-xs mb-1.5">
+                        <span class="font-medium text-zinc-300">Progress</span>
+                        <span class="font-mono text-emerald-400">5%</span>
+                    </div>
+                    <div class="progress-bar"><div class="bg-gradient-to-r from-sky-400 to-blue-400 h-full rounded" style="width: 5%"></div></div>
+                </div>
+
+                <div class="space-y-3 text-sm flex-1">
+                    <div>
+                        <span class="text-zinc-400 text-xs block">NEXT MILESTONE</span>
+                        <span class="font-medium">Define mission profile, key systems architecture and open-source licensing</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-x-4 text-xs">
+                        <div><span class="text-zinc-400">BOM</span><br><span class="font-medium">v0.2 • Initial</span></div>
+                        <div><span class="text-zinc-400">LAST UPDATED</span><br><span class="font-medium">2026-07-22</span></div>
+                    </div>
+                    <div><span class="text-zinc-400 text-xs">BLOCKERS</span> <span class="font-medium text-amber-400">Scope definition</span></div>
+                </div>
+
+                <div class="pt-5 mt-auto border-t border-zinc-800 flex gap-2">
+                    <a href="https://github.com/fitzyracing1/Hardware-Prototype-Tracker/issues/3" target="_blank" 
+                       class="flex-1 text-center py-2 text-xs font-semibold bg-zinc-800 hover:bg-zinc-700 rounded-2xl transition-colors">View Issue #3</a>
+                    <a href="https://github.com/fitzyracing1/Hardware-Prototype-Tracker/blob/main/projects/open-source-spaceship.md" target="_blank"
+                       class="flex-1 text-center py-2 text-xs font-semibold border border-zinc-700 hover:bg-zinc-800 rounded-2xl transition-colors">Structured Data</a>
+                </div>
+            </div>
+
+            <!-- Nanocraft Card -->
+            <div class="project-card concept bg-zinc-900 rounded-3xl p-6 flex flex-col" data-status="concept">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <div class="flex items-center gap-x-3">
+                            <i class="fa-solid fa-satellite text-3xl text-violet-400"></i>
+                            <h4 class="font-semibold text-2xl tracking-tight">Nanocraft</h4>
+                        </div>
+                        <p class="text-xs text-zinc-400 mt-0.5">Interstellar / Nanoscale Spacecraft</p>
+                    </div>
+                    <span class="status-badge bg-violet-400/10 text-violet-400 border border-violet-400/30">CONCEPT</span>
+                </div>
+
+                <div class="mb-5">
+                    <div class="flex justify-between text-xs mb-1.5">
+                        <span class="font-medium text-zinc-300">Progress</span>
+                        <span class="font-mono text-emerald-400">8%</span>
+                    </div>
+                    <div class="progress-bar"><div class="bg-gradient-to-r from-violet-400 to-fuchsia-400 h-full rounded" style="width: 8%"></div></div>
+                </div>
+
+                <div class="space-y-3 text-sm flex-1">
+                    <div>
+                        <span class="text-zinc-400 text-xs block">NEXT MILESTONE</span>
+                        <span class="font-medium">Finalize sail / propulsion concept and sensor/compute payload specs</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-x-4 text-xs">
+                        <div><span class="text-zinc-400">BOM</span><br><span class="font-medium">v0.3 • Exploratory</span></div>
+                        <div><span class="text-zinc-400">LAST UPDATED</span><br><span class="font-medium">2026-07-22</span></div>
+                    </div>
+                    <div><span class="text-zinc-400 text-xs">BLOCKERS</span> <span class="font-medium text-amber-400">Nanoscale integration</span></div>
+                </div>
+
+                <div class="pt-5 mt-auto border-t border-zinc-800 flex gap-2">
+                    <a href="https://github.com/fitzyracing1/Hardware-Prototype-Tracker/issues/4" target="_blank" 
+                       class="flex-1 text-center py-2 text-xs font-semibold bg-zinc-800 hover:bg-zinc-700 rounded-2xl transition-colors">View Issue #4</a>
+                    <a href="https://github.com/fitzyracing1/Hardware-Prototype-Tracker/blob/main/projects/nanocraft.md" target="_blank"
+                       class="flex-1 text-center py-2 text-xs font-semibold border border-zinc-700 hover:bg-zinc-800 rounded-2xl transition-colors">Structured Data</a>
+                </div>
+            </div>
+
+            <!-- Organic Spin Processor Card -->
+            <div class="project-card concept bg-zinc-900 rounded-3xl p-6 flex flex-col" data-status="concept">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <div class="flex items-center gap-x-3">
+                            <i class="fa-solid fa-atom text-3xl text-emerald-400"></i>
+                            <h4 class="font-semibold text-2xl tracking-tight">Organic Spin Processor</h4>
+                        </div>
+                        <p class="text-xs text-zinc-400 mt-0.5">Advanced Computing / Spintronics</p>
+                    </div>
+                    <span class="status-badge bg-emerald-400/10 text-emerald-400 border border-emerald-400/30">CONCEPT</span>
+                </div>
+
+                <div class="mb-5">
+                    <div class="flex justify-between text-xs mb-1.5">
+                        <span class="font-medium text-zinc-300">Progress</span>
+                        <span class="font-mono text-emerald-400">3%</span>
+                    </div>
+                    <div class="progress-bar"><div class="bg-gradient-to-r from-emerald-400 to-teal-400 h-full rounded" style="width: 3%"></div></div>
+                </div>
+
+                <div class="space-y-3 text-sm flex-1">
+                    <div>
+                        <span class="text-zinc-400 text-xs block">NEXT MILESTONE</span>
+                        <span class="font-medium">Literature review and identification of key organic spin materials / device architectures</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-x-4 text-xs">
+                        <div><span class="text-zinc-400">BOM</span><br><span class="font-medium">v0.2 • Exploratory</span></div>
+                        <div><span class="text-zinc-400">LAST UPDATED</span><br><span class="font-medium">2026-07-22</span></div>
+                    </div>
+                    <div><span class="text-zinc-400 text-xs">BLOCKERS</span> <span class="font-medium text-amber-400">Emerging field</span></div>
+                </div>
+
+                <div class="pt-5 mt-auto border-t border-zinc-800 flex gap-2">
+                    <a href="https://github.com/fitzyracing1/Hardware-Prototype-Tracker/issues/5" target="_blank" 
+                       class="flex-1 text-center py-2 text-xs font-semibold bg-zinc-800 hover:bg-zinc-700 rounded-2xl transition-colors">View Issue #5</a>
+                    <a href="https://github.com/fitzyracing1/Hardware-Prototype-Tracker/blob/main/projects/organic-spin-processor.md" target="_blank"
+                       class="flex-1 text-center py-2 text-xs font-semibold border border-zinc-700 hover:bg-zinc-800 rounded-2xl transition-colors">Structured Data</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- How it works / Phone workflow -->
+        <div class="mt-12 grid md:grid-cols-5 gap-6">
+            <div class="md:col-span-3 bg-zinc-900 border border-zinc-800 rounded-3xl p-7">
+                <h3 class="section-header mb-4 flex items-center gap-x-3"><i class="fa-solid fa-mobile-alt text-sky-400"></i> Phone Voice/Text Updates</h3>
+                <ol class="space-y-4 text-sm">
+                    <li class="flex gap-4"><span class="font-mono text-xs bg-zinc-800 w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5">1</span> <span>Open <strong>GitHub mobile app</strong> (or mobile browser) and go to this repository.</span></li>
+                    <li class="flex gap-4"><span class="font-mono text-xs bg-zinc-800 w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5">2</span> <span>Tap <strong>Issues</strong> → open the main tracking issue for your project (e.g. Tesla Bot Cruiser - Main Tracking).</span></li>
+                    <li class="flex gap-4"><span class="font-mono text-xs bg-zinc-800 w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5">3</span> <span>Tap the comment box, hit the <strong>microphone</strong> on your keyboard, and dictate naturally: "Chassis frame 3D printed today. Progress now 18%. Added motor controllers to BOM. Next: electronics integration."</span></li>
+                    <li class="flex gap-4"><span class="font-mono text-xs bg-zinc-800 w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5">4</span> <span>Post. It's timestamped, searchable, and feeds the dashboard &amp; history automatically.</span></li>
+                </ol>
+                <p class="mt-4 text-xs text-zinc-400">For more structured entries use the <strong>"Hardware Progress Update"</strong> issue template.</p>
+            </div>
+
+            <div class="md:col-span-2 bg-zinc-900 border border-zinc-800 rounded-3xl p-7 flex flex-col">
+                <h3 class="section-header mb-4">Live GitHub Projects Dashboard</h3>
+                <p class="text-sm text-zinc-300 flex-1">For a fully interactive, editable, multi-view dashboard (Kanban board, sortable table with progress %, roadmap timeline, filters):</p>
+                <ol class="text-xs space-y-1.5 mt-3 text-zinc-300">
+                    <li>1. Go to repo <strong>Projects</strong> tab</li>
+                    <li>2. Create new project (or link existing)</li>
+                    <li>3. Add the 4 main tracking issues (#2–#5)</li>
+                    <li>4. Add custom fields: Status, Progress (%), BOM Status, Next Milestone</li>
+                    <li>5. Create Board / Table / Roadmap views</li>
+                </ol>
+                <a href="https://github.com/fitzyracing1/Hardware-Prototype-Tracker" target="_blank" class="mt-5 inline-block text-center text-xs font-semibold py-2.5 bg-zinc-800 hover:bg-zinc-700 rounded-2xl">Open repo → Projects tab</a>
+            </div>
+        </div>
+
+        <div class="mt-8 text-center text-xs text-zinc-500">
+            Data synced from <code>projects/*.md</code> YAML frontmatter + structured sections • Git history = full audit trail • Open for collaboration
+            <br>
+            <span class="font-mono">Initialized 2026-07-21 • Enhanced 2026-07-22</span>
+        </div>
+    </div>
+
+    <script>
+        function initializeTailwind() {
+            document.documentElement.style.setProperty('--accent', '#0ea5e9');
+        }
+        
+        function filterProjects(status) {
+            const cards = document.querySelectorAll('#projects-grid .project-card');
+            const filters = document.querySelectorAll('[id^="filter-"]');
+            
+            filters.forEach(f => f.classList.remove('bg-zinc-700', 'active-filter'));
+            document.getElementById('filter-' + status).classList.add('bg-zinc-700', 'active-filter');
+            
+            cards.forEach(card => {
+                if (status === 'all') {
+                    card.style.display = '';
+                } else {
+                    if (card.dataset.status === status) {
+                        card.style.display = '';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                }
+            });
+        }
+        
+        // Keyboard support for filters
+        document.addEventListener('keydown', function(e) {
+            if (e.key === '?') {
+                const all = document.getElementById('filter-all');
+                if (all) all.click();
+                e.preventDefault();
+            }
+        });
+        
+        // Boot
+        window.onload = function() {
+            initializeTailwind();
+            // Default filter active
+            const allFilter = document.getElementById('filter-all');
+            if (allFilter) allFilter.classList.add('bg-zinc-700', 'active-filter');
+            
+            // Optional: subtle animation on load
+            const cards = document.querySelectorAll('.project-card');
+            cards.forEach((card, i) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(10px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 80 * i);
+            });
+        }
+    </script>
+</body>
+</html>
