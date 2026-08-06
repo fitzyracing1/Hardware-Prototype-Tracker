@@ -3,7 +3,7 @@ project: "Tesla Bot Cruiser"
 category: "Robotics / Autonomous Mobile Platform"
 status: "Prototyping"
 progress_percent: 15
-last_updated: "2026-08-04"
+last_updated: "2026-08-06"
 bom_version: "v0.8"
 bom_status: "Initial Draft"
 next_milestone: "Complete high-level architecture and initial chassis prototype"
@@ -35,6 +35,7 @@ Early prototyping phase. Tracker system initialized and actively maintained. Bas
 
 ## Progress Log
 
+- **2026-08-06**: System status check. Tracker fully operational. Ready for voice/text progress logging from phone. Dashboard and structured data current.
 - **2026-08-04**: System maintenance check. Tracker fully operational. Ready for voice/text progress logging from phone. Dashboard and structured data current.
 - **2026-07-22**: Refined structured data files, added detailed BOM tables, deployed visual dashboard. System polished for ongoing voice/text updates from phone and GitHub Projects sync.
 - **2026-07-21**: Hardware Prototype Tracker initialized for this project. Basic concept documented. Initial BOM draft created. Status set to Prototyping (early).
@@ -52,6 +53,6 @@ Early prototyping phase. Tracker system initialized and actively maintained. Bas
 - Related open hardware robotics (e.g. Open Source Rover, other mobile platforms)
 - Main tracking issue: #2
 - Related repo: https://github.com/fitzyracing1/Teslabotspacecruiser
-- Predictive-echo control: https://github.com/fitzyracing1/opti
+- Predictive-echo control: https://github.com/fitzyracing1/opti / https://github.com/fitzyracing1/axb-optimus
 
 *Update this file alongside issue comments for full versioned history via Git. Use voice updates on phone to log progress, then sync key numbers here if needed.*
