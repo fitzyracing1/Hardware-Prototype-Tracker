@@ -149,3 +149,7 @@ Create new ones easily with the template or by labeling appropriately.
 ---
 
 *Initialized: 2026-07-21* | *Main branch* | *Open for collaboration and personal use*
+## Documentation
+
+- In-repo docs: [docs/](docs/index.md)
+- Wiki: [https://github.com/fitzyracing1/Hardware-Prototype-Tracker/wiki](https://github.com/fitzyracing1/Hardware-Prototype-Tracker/wiki)
